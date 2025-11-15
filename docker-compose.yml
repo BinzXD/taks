@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: pg_task
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret164
+      POSTGRES_DB: taks
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  app:
+    build: .
+    container_name: task_app
+    depends_on:
+      - db
+    environment:
+      - GO_ENV=development
+      - APP_PORT=8080
+      - DB_USER=postgres
+      - DB_PASS=secret164
+      - DB_NAME=taks
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_CONNECTION=postgres
+      - JWT_SECRET=7b48c44d-cb22-4e9e-a614-da17e44de2b8
+      - JWT_EXPIRE=24h
+    ports:
+      - "8080:8080"
+    command: sh -c "./main migrate && ./main seed && ./main"
+
+volumes:
+  pgdata:
