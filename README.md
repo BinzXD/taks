@@ -6,26 +6,38 @@ Project ini adalah aplikasi **backend** menggunakan **Golang**, **GORM**, dan **
 👉 [Lihat di Postman](https://documenter.getpostman.com/view/49571281/2sB3WwowQz)
 
 ## Clone Repository
+```bash
 git clone https://github.com/BinzXD/taks.git
 cd task
+```
 
 
 ## Build & Run with Docker
 Jalankan:
+```bash
 docker-compose up --build
+```
 Lalu:
+```bash
 docker ps
+```
 Kemudian buka dibrowser anda:
+```bash
 http://localhost:8080/
+```
 
 
 ## Default Account
 Gunakan akun default untuk login:
+```bash
 Email:    superadmin@gmail.com
 Password: secret123
+```
 
 
 ## Notes
+```bash
 Pastikan port 8080 & 5432 belum digunakan di lokal.
 Database akan otomatis dibuat dan di-seed saat pertama kali container dijalankan.
 Untuk development, gunakan GO_ENV=development.
+```
